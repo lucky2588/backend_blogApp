@@ -43,14 +43,7 @@ public class  BlogController  {
         return response;
     }
 
-    @GetMapping(value = "getList")
-    public List<BlogItems> findAllBlogsWithPagination (
-            @RequestParam(required = false, defaultValue = "") String textSearch,
-            @RequestParam(required = false, defaultValue = "") String active,
-            @RequestParam(required = false, defaultValue = "") List<Long> categories) throws  RestControllerException, NotFoundException, BadResquestException {
-        List<BlogItems> response = service.findAllBlogsWithPaginationList(textSearch, active , categories );
-        return response;
-    }
+
 
     @GetMapping(value = "/{id}")
     public BlogDetail findBlogById(@PathVariable Long id) throws  RestControllerException, NotFoundException, BadResquestException {
@@ -72,13 +65,9 @@ public class  BlogController  {
     @GetMapping(value = "{id}/getComments")
     public PageData<CommentDetail> findAllCommentsWithPagination(
             @PathVariable Long id,
-            @RequestParam(defaultValue = "0") Integer page,
-            @RequestParam(defaultValue = "5") Integer pageSize
+            @RequestParam(required = false,defaultValue = "0") Integer page,
+            @RequestParam(required = false,defaultValue = "10") Integer pageSize
     ){
         return service.getComments(id,page,pageSize);
     }
-
-
-
-
 }

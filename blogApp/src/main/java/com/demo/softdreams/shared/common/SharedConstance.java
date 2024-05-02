@@ -53,7 +53,7 @@ public class SharedConstance {
         public static final String PUBLIC = "PUBLIC";
         public static final String PRIVATE = "PRIVATE";
 
-        public static final String COMMENT_FOR_BLOG = "COMMENT_FOR_BLOG";
+        public static final String COMMENT_FOR_BLOG = "BLOG";
     }
 
 
