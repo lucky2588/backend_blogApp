@@ -2,10 +2,10 @@ package com.demo.softdreams.administrator.service;
 
 import com.demo.softdreams.administrator.dto.other.CategoryDTO;
 import com.demo.softdreams.administrator.dto.other.CategoryDetail;
-import com.demo.softdreams.shared.exception.BadResquestException;
-import com.demo.softdreams.shared.exception.NotFoundException;
-import com.demo.softdreams.shared.exception.RestControllerException;
-import com.demo.softdreams.shared.res.CustomApiResponse;
+import com.demo.softdreams.core.exception.BadResquestException;
+import com.demo.softdreams.core.exception.NotFoundException;
+import com.demo.softdreams.core.exception.RestControllerException;
+import com.demo.softdreams.shared.respone.CustomApiResponse;
 
 import java.util.List;
 

@@ -2,14 +2,13 @@ package com.demo.softdreams.global.service.Impl;
 
 
 import com.demo.softdreams.core.entites.Image;
-import com.demo.softdreams.core.entites.User;
 import com.demo.softdreams.core.sercurity.iCurrentImpl;
 import com.demo.softdreams.global.service.FileService;
-import com.demo.softdreams.shared.exception.BadResquestException;
-import com.demo.softdreams.shared.exception.NotFoundException;
-import com.demo.softdreams.shared.res.FileRes;
-import com.demo.softdreams.shared.respository.ImageRepository;
-import com.demo.softdreams.shared.respository.UserRepository;
+import com.demo.softdreams.core.exception.BadResquestException;
+import com.demo.softdreams.core.exception.NotFoundException;
+import com.demo.softdreams.shared.respone.FileRes;
+import com.demo.softdreams.core.respository.ImageRepository;
+import com.demo.softdreams.core.respository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j

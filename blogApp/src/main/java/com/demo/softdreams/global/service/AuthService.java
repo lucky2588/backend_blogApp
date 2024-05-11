@@ -1,8 +1,8 @@
 package com.demo.softdreams.global.service;
 
-import com.demo.softdreams.shared.res.AuthRes;
-import com.demo.softdreams.shared.res.LoginResquest;
-import com.demo.softdreams.shared.res.RegisterResquest;
+import com.demo.softdreams.shared.respone.AuthRes;
+import com.demo.softdreams.shared.respone.LoginResquest;
+import com.demo.softdreams.shared.respone.RegisterResquest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 

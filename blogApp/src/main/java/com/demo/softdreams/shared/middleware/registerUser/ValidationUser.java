@@ -1,16 +1,14 @@
 package com.demo.softdreams.shared.middleware.registerUser;
 
-import com.demo.softdreams.shared.res.RegisterResquest;
-import com.demo.softdreams.shared.respository.UserRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.demo.softdreams.shared.respone.RegisterResquest;
+import com.demo.softdreams.core.respository.UserRepository;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ValidationUser extends HandlerRegisterUser {
     private final UserRepository dataSource;
-;
+
+
     public ValidationUser(UserRepository dataSource) {
         this.dataSource = dataSource;
     }
@@ -20,6 +18,7 @@ public class ValidationUser extends HandlerRegisterUser {
         boolean isCheck = false;
         HasError error = new HasError(isCheck,"");
         if(dataSource.findByEmail(res.getEmail()).isPresent()){
+
             isCheck = true;
             return new HasError(isCheck, "Email Exits");
         }
@@ -33,7 +32,6 @@ public class ValidationUser extends HandlerRegisterUser {
         }
         return error;
     }
-
 
 
 

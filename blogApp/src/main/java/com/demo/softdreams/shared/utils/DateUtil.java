@@ -30,7 +30,7 @@ public class DateUtil {
         return DATE_TIME_WITH_SECOND_FORMAT.format(date);
     }
 
-    public static String formatDateTimeBlackNut(Date date) {
+    public static String formatDateTime(Date date) {
         DATE_TIME_FORMAT_BLACK_NUT.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
         return DATE_TIME_FORMAT_BLACK_NUT.format(date);
     }
@@ -52,10 +52,5 @@ public class DateUtil {
         return df.format(DateUtil.getDate(date.getTime()));
     }
 
-    public static String getISO8601StringForDate(Date date) {
-        TimeZone tz = TimeZone.getTimeZone("UTC");
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        dateFormat.setTimeZone(tz);
-        return dateFormat.format(date);
-    }
+
 }

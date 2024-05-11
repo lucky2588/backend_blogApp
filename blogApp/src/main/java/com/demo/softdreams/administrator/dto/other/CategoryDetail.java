@@ -1,7 +1,6 @@
 package com.demo.softdreams.administrator.dto.other;
 
-import com.demo.softdreams.shared.res.IdReq;
-import com.demo.softdreams.shared.res.IdRes;
+import com.demo.softdreams.shared.respone.IdRes;
 import com.demo.softdreams.shared.service.Trimmable;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;

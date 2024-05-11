@@ -3,10 +3,10 @@ package com.demo.softdreams.global.service;
 import com.demo.softdreams.administrator.dto.blog.BlogDetail;
 import com.demo.softdreams.administrator.dto.blog.BlogItems;
 import com.demo.softdreams.global.entites.dto.CommentDetail;
-import com.demo.softdreams.shared.exception.BadResquestException;
-import com.demo.softdreams.shared.exception.NotFoundException;
-import com.demo.softdreams.shared.res.CommentReq;
-import com.demo.softdreams.shared.res.PageData;
+import com.demo.softdreams.core.exception.BadResquestException;
+import com.demo.softdreams.core.exception.NotFoundException;
+import com.demo.softdreams.shared.respone.CommentReq;
+import com.demo.softdreams.shared.respone.PageData;
 
 import java.util.List;
 

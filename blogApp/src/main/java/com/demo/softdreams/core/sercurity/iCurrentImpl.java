@@ -1,8 +1,8 @@
 package com.demo.softdreams.core.sercurity;
 
 import com.demo.softdreams.core.entites.User;
-import com.demo.softdreams.shared.exception.BadResquestException;
-import com.demo.softdreams.shared.respository.UserRepository;
+import com.demo.softdreams.core.exception.BadResquestException;
+import com.demo.softdreams.core.respository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

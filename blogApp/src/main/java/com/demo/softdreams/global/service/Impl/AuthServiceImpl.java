@@ -7,14 +7,15 @@ import com.demo.softdreams.core.sercurity.CustomUserDetailService;
 import com.demo.softdreams.core.sercurity.JwtUtils;
 import com.demo.softdreams.global.service.AuthService;
 import com.demo.softdreams.shared.common.SharedConstance;
-import com.demo.softdreams.shared.exception.BadResquestException;
+import com.demo.softdreams.core.exception.BadResquestException;
 import com.demo.softdreams.shared.middleware.registerUser.HandlerRegisterUser;
+import com.demo.softdreams.shared.middleware.registerUser.ValidationPhone;
 import com.demo.softdreams.shared.middleware.registerUser.ValidationUser;
-import com.demo.softdreams.shared.res.AuthRes;
-import com.demo.softdreams.shared.res.LoginResquest;
-import com.demo.softdreams.shared.res.RegisterResquest;
-import com.demo.softdreams.shared.respository.RoleRepository;
-import com.demo.softdreams.shared.respository.UserRepository;
+import com.demo.softdreams.shared.respone.AuthRes;
+import com.demo.softdreams.shared.respone.LoginResquest;
+import com.demo.softdreams.shared.respone.RegisterResquest;
+import com.demo.softdreams.core.respository.RoleRepository;
+import com.demo.softdreams.core.respository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Optional;
 import java.util.List;
 
 
@@ -54,16 +54,15 @@ public class AuthServiceImpl implements AuthService {
     public AuthRes login(LoginResquest resquestLogin) throws AuthenticationException {
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(resquestLogin.getUsername(), resquestLogin.getPassword());
-        // tien hanh xac thuc
+        // try authen
         try {
             Authentication authentication = authenticationManager.authenticate(token);
-            //  Luu vao database Context Horder
+            //  Luu vao Context Horder
             SecurityContextHolder.getContext().setAuthentication(authentication);
             // Lấy ra thông tin UserDetails()
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(authentication.getName());
             String jwtToken = jwtUtils.generateToken(userDetails);
             User user = userRepository.findByUsername(authentication.getName()).orElse(null);
-
             return
                     new AuthRes(
                             UserMapper.toUserDto(user),
@@ -76,26 +75,11 @@ public class AuthServiceImpl implements AuthService {
 
     // Đăng kí tài khoản => todo : check tài khoản với email , tạo user và gửi về mã token để xác nhận
     public ResponseEntity<?> registerAccount(RegisterResquest resquest) {
-        handlerValidation = HandlerRegisterUser.setNextChain(new ValidationUser(this.userRepository));
+        handlerValidation = HandlerRegisterUser.setNextChain(new ValidationUser(this.userRepository), new ValidationPhone()); // filter two chain
         if(handlerValidation.checkProperties(resquest).isError){
             log.info(handlerValidation.checkProperties(resquest).mess);
             throw new BadResquestException(handlerValidation.checkProperties(resquest).mess);
         }
-//        if(!resquest.getPassword().equals(resquest.getReTypePassword())){
-//            throw new BadResquestException("Password and rePassword not vail !! ");
-//        }
-//        Optional<User> users = userRepository.findByUsername(resquest.getUsername());
-//        if (users.isPresent()) { // nếu đã có tài khoản
-//            throw new BadResquestException("Username exits");
-//        }
-//        Optional<User> isCheckEmail = userRepository.findByEmail(resquest.getEmail());
-//        if (isCheckEmail.isPresent()) { // nếu đã có email
-//            throw new BadResquestException("Email exits");
-//        }
-//        Optional<User> isCheckMissr = userRepository.findByMsisdn(resquest.getMsisdn());
-//        if (isCheckMissr.isPresent()) { // nếu đã có midss
-//            throw new BadResquestException(" Numbers exits !! ");
-//        }
         String gender = "";
        switch (resquest.getGender()){
            case SharedConstance.GENDER.MALE:

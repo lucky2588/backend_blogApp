@@ -1,6 +1,6 @@
 package com.demo.softdreams.core.sercurity;
 
-import com.demo.softdreams.shared.res.ErrorResponse;
+import com.demo.softdreams.shared.respone.ErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletException;

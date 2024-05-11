@@ -96,24 +96,39 @@ public class SharedConstance {
             }
 
 
-            public static class Admin {
-                // display Permisson
-                private Admin() {
-                }
 
-
-
-
-                public static final String ADMIN_MANAGE_POPUP_VIEW = "ADMIN_MANAGE_POPUP_VIEW";
-                public static final String ADMIN_MANAGE_POPUP_CREATE = "ADMIN_MANAGE_POPUP_CREATE";
-                public static final String ADMIN_MANAGE_POPUP_UPDATE = "ADMIN_MANAGE_POPUP_UPDATE";
-                public static final String ADMIN_MANAGE_POPUP_DELETE = "ADMIN_MANAGE_POPUP_DELETE";
-            }
 
 
         }
+    public static class Admin {
+        // display Permisson
+        private Admin() {
+        }
+        public static final String REPORT_BLOG = "REPORT_BLOG";
 
-        public enum AGE_TYPEE {
+
+
+
+        public static final String ADMIN_MANAGE_BLOG_VIEW = "ADMIN_MANAGE_POPUP_VIEW";
+        public static final String ADMIN_MANAGE_BLOG_CREATE = "ADMIN_MANAGE_POPUP_CREATE";
+        public static final String ADMIN_MANAGE_BLOG_UPDATE = "ADMIN_MANAGE_POPUP_UPDATE";
+        public static final String ADMIN_MANAGE_BLOG_DELETE = "ADMIN_MANAGE_POPUP_DELETE";
+    }
+
+    public static class Role {
+
+        private Role() {
+        }
+        public static final String ROLE_ADMIN = "ROLE_ADMIN";
+
+
+
+
+
+    }
+
+
+    public enum AGE_TYPEE {
             CHILDREN, ADULT, ALL
         }
 

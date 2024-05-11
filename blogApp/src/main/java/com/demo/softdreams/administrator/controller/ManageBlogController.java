@@ -3,15 +3,16 @@ import com.demo.softdreams.administrator.dto.blog.BlogDetail;
 import com.demo.softdreams.administrator.dto.blog.BlogItems;
 import com.demo.softdreams.administrator.dto.blog.SaveBlogReq;
 import com.demo.softdreams.administrator.service.ManageBlogService;
-import com.demo.softdreams.shared.exception.BadResquestException;
-import com.demo.softdreams.shared.exception.NotFoundException;
-import com.demo.softdreams.shared.exception.RestControllerException;
-import com.demo.softdreams.shared.res.CustomApiResponse;
+import com.demo.softdreams.config.utilities.LocalDateTimeConfig;
+import com.demo.softdreams.core.exception.BadResquestException;
+import com.demo.softdreams.core.exception.NotFoundException;
+import com.demo.softdreams.core.exception.RestControllerException;
+import com.demo.softdreams.shared.respone.CustomApiResponse;
 import static com.demo.softdreams.shared.common.ResponseConstance.*;
-import com.demo.softdreams.config.LocalDateTimeConfig;
 
-import com.demo.softdreams.shared.res.IdReq;
-import com.demo.softdreams.shared.res.PageData;
+import com.demo.softdreams.shared.respone.IdReq;
+import com.demo.softdreams.shared.respone.PageData;
+import com.demo.softdreams.core.respository.BlogRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,9 +26,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("api/manage/blog")
 public class ManageBlogController  {
+    private final BlogRepository blogRepository;
     private final LocalDateTimeConfig localDateTimeConfig;
     @Autowired
     private ManageBlogService service;
+
+
 //    @ApiOperation(value = "Find Blogs in web admin with pagination")
     @GetMapping(value = "")
     public PageData<BlogItems> findAllBlogsWithPagination (
@@ -58,11 +62,11 @@ public class ManageBlogController  {
 
 //    @ApiOperation(value = "Change active of Blog")
 //    @PreAuthorize("hasAnyAuthority('" + SharedConstance.PermissionsCode.Admin.MANAGE_Blog_CHANGE_STATUS + "')")
-    @PostMapping(value = "/change-active/{active}")
-    public CustomApiResponse changeActiveBlog(@Valid @RequestBody IdReq req , @PathVariable Integer active) throws RestControllerException , NotFoundException, BadResquestException{
-        CustomApiResponse response = service.changeActiveBlog(req.getId(), active);
-        return response;
-    }
+//    @PostMapping(value = "/change-active/{active}")
+//    public CustomApiResponse changeActiveBlog(@Valid @RequestBody IdReq req , @PathVariable Integer active) throws RestControllerException , NotFoundException, BadResquestException{
+//        CustomApiResponse response = service.changeActiveBlog(req.getId(), active);
+//        return response;
+//    }
 
 //    @ApiOperation(value = "Delete Blog")
     @DeleteMapping(value = "/delete/{id}")
@@ -85,6 +89,30 @@ public class ManageBlogController  {
         }
         return response;
     }
+
+
+
+
+
+//    @GetMapping("/report/export")
+//    public ResponseEntity<byte[]> generatePdf() throws IOException, JRException {
+//        byte[] pdfBytes = service.exportExport();
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_PDF);
+//        headers.setContentDispositionFormData("filename", "report.pdf");
+//        headers.setContentLength(pdfBytes.length);
+//        return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
+//    }
+
+    @GetMapping("/report/export")
+    public void sendReport(){
+         service.exportData();
+    }
+
+
+
+
+
 
 
 

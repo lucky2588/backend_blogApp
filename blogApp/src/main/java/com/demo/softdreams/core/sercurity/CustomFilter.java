@@ -33,15 +33,12 @@ public class CustomFilter extends OncePerRequestFilter{
         }
         // TODO : lay token tu header
         String jwtToken = authHeader.substring(7);
-
         // TODO : lay ra thong tin Username Email
         String Username = jwtUtils.extractUsername(jwtToken);
-
         // TODO : ktra Email va tao doi tuong xac thuc
         if(Username != null){
-
             UserDetails userDetails = customUserDetailService.loadUserByUsername(Username);
-            userDetails.getAuthorities().forEach(System.out::println);
+            userDetails.getAuthorities().forEach(System.out::println); // in ra List quyền User
             if(jwtUtils.isTokenValid(jwtToken,userDetails)){
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails.getUsername(),null,userDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
@@ -49,4 +46,10 @@ public class CustomFilter extends OncePerRequestFilter{
         }
         filterChain.doFilter(request,response);
     }
+
+
+
+
+
+
 }

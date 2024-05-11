@@ -30,28 +30,42 @@ public class ExportConstance {
         private ExcelBlogReport() {
         }
 
-        public static final int COLUMN_INDEX_NAME_GAME = 0;
-        public static final int COLUMN_INDEX_TOTAL_USER_VIEW = 1;
-        public static final int COLUMN_INDEX_TOTAL_USER_PLAY = 2;
-        public static final int COLUMN_INDEX_TOTAL_USER_PLAY_TIME = 3;
-        public static final int COLUMN_INDEX_TOTAL_USER_NEW_VIEW = 4;
-        public static final int COLUMN_INDEX_TOTAL_USER_NEW_PLAY = 5;
-        public static final int COLUMN_INDEX_TOTAL_USER_NEW_PLAY_TIME = 6;
+        public static final int COLUMN_INDEX_REPORT_TITLE = 0;
+        public static final int COLUMN_INDEX_TOTAL_TB_ACTIVE_NEW = 1;
+        public static final int COLUMN_INDEX_TOTAL_USER_VIEW = 2;
 
-        public static final List<Integer> COL_SIZE = List.of(
-                COLUMN_INDEX_NAME_GAME ,  COLUMN_INDEX_TOTAL_USER_VIEW,
-                COLUMN_INDEX_TOTAL_USER_PLAY, COLUMN_INDEX_TOTAL_USER_PLAY_TIME, COLUMN_INDEX_TOTAL_USER_NEW_VIEW,COLUMN_INDEX_TOTAL_USER_NEW_PLAY,COLUMN_INDEX_TOTAL_USER_NEW_PLAY_TIME
-        );
 
-        public static final Map<Integer, String> COL_NAME = Map.of(
-                COLUMN_INDEX_NAME_GAME, ExportConstance.CommonDisplay.COL_NameGame_DISPLAY,
-                COLUMN_INDEX_TOTAL_USER_VIEW, "Số lượng lượt xem",
-                COLUMN_INDEX_TOTAL_USER_PLAY, "Số lượng lượt chơi",
-                COLUMN_INDEX_TOTAL_USER_PLAY_TIME, "Tổng số thời gian chơi",
-                COLUMN_INDEX_TOTAL_USER_NEW_VIEW, "TB mới xem",
-                COLUMN_INDEX_TOTAL_USER_NEW_PLAY, "TB mới chơi",
-                COLUMN_INDEX_TOTAL_USER_NEW_PLAY_TIME, "Tổng số thời gian TB mới chơi"
+        public static final List<Integer> COL_SIZE_CCU = List.of(
+                COLUMN_INDEX_REPORT_TITLE,COLUMN_INDEX_TOTAL_TB_ACTIVE_NEW,COLUMN_INDEX_TOTAL_USER_VIEW
         );
+        public static final Map<Integer, String> COL_NAME_CCU = Stream.of(new Object[][] {
+                { COLUMN_INDEX_REPORT_TITLE, "Title" },
+                { COLUMN_INDEX_TOTAL_TB_ACTIVE_NEW, " View  " },
+                { COLUMN_INDEX_TOTAL_USER_VIEW, " Comment " },
+
+        }).collect(Collectors.toMap(data -> (Integer) data[0], data -> (String) data[1]));
+    }
+    public static class ExcelTrafficUsage {
+        private ExcelTrafficUsage() {
+        }
+        // for CCU
+        public static final int COLUMN_INDEX_REPORT_DATE_TIME = 0;
+        public static final int COLUMN_INDEX_TOTAL_TB_ACTIVE_NEW = 1;
+        public static final int COLUMN_INDEX_TOTAL_USER_VIEW = 2;
+        public static final int COLUMN_INDEX_TOTAL_USER_PLAY = 3;
+        public static final int COLUMN_INDEX_TOTAL_CCU_IN_HOURS = 4;
+
+        public static final List<Integer> COL_SIZE_CCU = List.of(
+                COLUMN_INDEX_REPORT_DATE_TIME,COLUMN_INDEX_TOTAL_TB_ACTIVE_NEW,COLUMN_INDEX_TOTAL_USER_VIEW
+                ,COLUMN_INDEX_TOTAL_USER_PLAY,COLUMN_INDEX_TOTAL_CCU_IN_HOURS
+        );
+        public static final Map<Integer, String> COL_NAME_CCU = Stream.of(new Object[][] {
+                { COLUMN_INDEX_REPORT_DATE_TIME, "Khung Giờ" },
+                { COLUMN_INDEX_TOTAL_TB_ACTIVE_NEW, "Lượt Đăng Kí" },
+                { COLUMN_INDEX_TOTAL_USER_VIEW, "Lượt Xem" },
+                { COLUMN_INDEX_TOTAL_USER_PLAY, "Lượt Chơi" },
+                { COLUMN_INDEX_TOTAL_CCU_IN_HOURS, "CCU CAO ĐIỂM (TƯƠNG ĐỐI, TÍNH CÁC LƯỢT CHƠI CÓ CÙNG THỜI GIAN CHƠI)" },
+        }).collect(Collectors.toMap(data -> (Integer) data[0], data -> (String) data[1]));
     }
 
 
@@ -61,16 +75,13 @@ public class ExportConstance {
         private SheetExcel() {
         }
 
-        public static final int EXCEL_USER_UPLOAD_GAME = 1;
-        public static final int EXCEL_REPORT_USER_GROWTH_UP = 2;
-        public static final int EXCEL_REPORT_SUBSCRIPTION = 3;
+
+        public static final int EXCEL_REPORT_TRAFFIC_USAGE = 1;
 
 
-        public static final int EXCEL_REPORT_LANDING_PAGE = 12;
+
         public static final Map<Integer, String> EXCEL_SHEET_NAME = Map.of(
-                EXCEL_USER_UPLOAD_GAME, "Danh sách nhà cung cấp game",
-                EXCEL_REPORT_USER_GROWTH_UP, "Báo cáo tăng trưởng người dùng",
-                EXCEL_REPORT_SUBSCRIPTION, "Báo cáo gói cước"
+                EXCEL_REPORT_TRAFFIC_USAGE, "Báo cáo lượt tương tác Blog"
         );
 
     }

@@ -3,10 +3,10 @@ package com.demo.softdreams.administrator.controller;
 import com.demo.softdreams.administrator.dto.other.CategoryDTO;
 import com.demo.softdreams.administrator.dto.other.CategoryDetail;
 import com.demo.softdreams.administrator.service.ManageCategoryService;
-import com.demo.softdreams.shared.exception.BadResquestException;
-import com.demo.softdreams.shared.exception.NotFoundException;
-import com.demo.softdreams.shared.exception.RestControllerException;
-import com.demo.softdreams.shared.res.CustomApiResponse;
+import com.demo.softdreams.core.exception.BadResquestException;
+import com.demo.softdreams.core.exception.NotFoundException;
+import com.demo.softdreams.core.exception.RestControllerException;
+import com.demo.softdreams.shared.respone.CustomApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Slf4j
 @RequiredArgsConstructor
+//@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
 @RequestMapping("api/manage/category")
 public class ManageCategoryController {
     @Autowired
@@ -45,11 +45,6 @@ public class ManageCategoryController {
     public CustomApiResponse removeCategory(@PathVariable Long id) throws RestControllerException,NotFoundException {
         return service.deleteCategory(id);
     }
-
-
-
-
-
 
 
 }

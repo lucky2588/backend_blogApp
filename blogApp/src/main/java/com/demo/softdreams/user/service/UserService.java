@@ -1,12 +1,10 @@
 package com.demo.softdreams.user.service;
 
 import com.demo.softdreams.core.dto.UserInfo;
-import com.demo.softdreams.shared.exception.BadResquestException;
-import com.demo.softdreams.shared.exception.NotFoundException;
-import com.demo.softdreams.shared.res.ChangeInfoUser;
-import com.demo.softdreams.shared.res.ChangePassword;
-import com.demo.softdreams.shared.res.CustomApiResponse;
-import org.aspectj.weaver.ast.Not;
+import com.demo.softdreams.core.exception.BadResquestException;
+import com.demo.softdreams.core.exception.NotFoundException;
+import com.demo.softdreams.shared.respone.ChangeInfoUser;
+import com.demo.softdreams.shared.respone.ChangePassword;
 
 public interface UserService {
 

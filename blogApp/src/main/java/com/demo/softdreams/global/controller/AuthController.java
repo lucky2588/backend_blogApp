@@ -1,9 +1,9 @@
 package com.demo.softdreams.global.controller;
 
 import com.demo.softdreams.global.service.AuthService;
-import com.demo.softdreams.shared.res.AuthRes;
-import com.demo.softdreams.shared.res.LoginResquest;
-import com.demo.softdreams.shared.res.RegisterResquest;
+import com.demo.softdreams.shared.respone.AuthRes;
+import com.demo.softdreams.shared.respone.LoginResquest;
+import com.demo.softdreams.shared.respone.RegisterResquest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

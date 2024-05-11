@@ -18,10 +18,10 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Getter
 @Setter
-@MappedSuperclass
+//@MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
+//@EntityListeners(AuditingEntityListener.class)
 //@SQLDelete(sql = "update #{#entityName} e set e.is_deleted=false where e.id = ?") //||UPDATE table_product SET is_deleted = true WHERE id=?
 public abstract class Auditable{
     @Column(name = "created_date", updatable = false)

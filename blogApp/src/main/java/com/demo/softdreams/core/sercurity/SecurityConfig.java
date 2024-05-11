@@ -32,26 +32,29 @@ public class SecurityConfig {
     private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
     @Autowired
     private CustomFilter customFilter;
+
+    // Config Bean for setup Filter / Chain in Security
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
     @Bean
-    public AuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider() { // prodiver fied for authen user
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(passwordEncoder());
-        provider.setUserDetailsService(customUserDetailService);
+        provider.setPasswordEncoder(passwordEncoder()); // set Password with encrty
+        provider.setUserDetailsService(customUserDetailService); // get Username
         return provider;
     }
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        // manage rs form client
         return authenticationConfiguration.getAuthenticationManager();
     }
     @Bean
 
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         String[] publicList = {"/api/public/**","api/v1/export/**","/register","/authentication/**","authentication/**","api/public/**",
-                "api/files/**","/api/files/**"};
+                "api/files/**","/api/files/**","/api/manage/category/getAll"};
         String[] adminList = {"api/manage/**","/api/manage/**",
                 "/api/v1/admin/**"};
         http
@@ -71,10 +74,10 @@ public class SecurityConfig {
                 .authenticationEntryPoint(customAuthenticationEntryPoint)
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // unable Seesion
                 .and()
                 .authenticationProvider(authenticationProvider())
-                .addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class); //
         return http.build();
     }
 
